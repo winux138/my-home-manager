@@ -4,14 +4,27 @@
 
   home = {
     packages = with pkgs; [
+      kitty
+      keepassxc
+
       neovim
       lazygit
-      keepassxc
+      helix
 
       fd
       ripgrep
       ouch
       tmux
+      fastfetch
+      bat
+      bottom
+      htop
+      fzf
+      eza
+      dust
+      tree
+      opencode
+      curl
     ];
 
     username = "ju";
