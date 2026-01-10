@@ -16,20 +16,22 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, ...} @ inputs :
-  let 
-    lib = nixpkgs.lib;
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
-  in {
-    homeConfigurations = {
-      ubuntu-home = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	modules = [ 
-	  inputs.nvf.homeManagerModules.default
-	  ./home.nix 
-	];
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    let
+      lib = nixpkgs.lib;
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in
+    {
+      homeConfigurations = {
+        ubuntu-home = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            inputs.nvf.homeManagerModules.default
+            ./home.nix
+          ];
+        };
       };
     };
-  };
 }

@@ -135,7 +135,7 @@
 
   programs.tmux = {
     enable = true;
-    clock24  = true;
+    clock24 = true;
     mouse = true;
     keyMode = "vi";
     baseIndex = 1;
