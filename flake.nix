@@ -8,9 +8,15 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { nixpkgs, home-manager, ...}:
+  outputs = { nixpkgs, home-manager, ...} @ inputs :
   let 
     lib = nixpkgs.lib;
     system = "x86_64-linux";
@@ -19,7 +25,10 @@
     homeConfigurations = {
       ubuntu-home = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-	modules = [ ./home.nix ];
+	modules = [ 
+	  inputs.nvf.homeManagerModules.default
+	  ./home.nix 
+	];
       };
     };
   };
