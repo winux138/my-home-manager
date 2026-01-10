@@ -6,6 +6,7 @@
     packages = with pkgs; [
       neovim
       lazygit
+      keepassxc
 
       fd
       ripgrep
