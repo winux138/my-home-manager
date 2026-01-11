@@ -1,10 +1,13 @@
 { lib, pkgs, ... }:
 let
-  neovimConfig = import ./neovim.nix { inherit lib pkgs; };
-  gitConfig = import ./git.nix { inherit lib pkgs; };
-  tmuxConfig = import ./tmux.nix { inherit lib pkgs; };
 in
 {
+  imports = [
+    ./neovim.nix
+    ./git.nix
+    ./tmux.nix
+  ];
+
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
@@ -51,10 +54,4 @@ in
 
     stateVersion = "25.11";
   };
-
-  imports = [
-    neovimConfig
-    gitConfig
-    tmuxConfig
-  ];
 }
