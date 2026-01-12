@@ -36,6 +36,7 @@ in
       arandr
       lazygit
       helix
+      direnv
 
       fd
       ripgrep
