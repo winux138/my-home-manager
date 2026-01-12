@@ -6,6 +6,7 @@ in
     ./neovim.nix
     ./git.nix
     ./tmux.nix
+    ./polybar.nix
   ];
 
   programs.home-manager.enable = true;
@@ -16,8 +17,13 @@ in
     packages = with pkgs; [
       kitty
       keepassxc
+      # quickshell
+      polybar
+      brightnessctl
+      flameshot
 
-      neovim
+      xclip
+      arandr
       lazygit
       helix
 
