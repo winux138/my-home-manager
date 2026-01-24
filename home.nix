@@ -25,6 +25,8 @@ in
 
   home = {
     packages = with pkgs; [
+      goofcord
+
       kitty
       keepassxc
       # quickshell

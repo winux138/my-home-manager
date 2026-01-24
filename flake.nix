@@ -14,6 +14,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.flake-parts.follows = "flake-parts";
+    };
+
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    minimal-emacs-d = {
+      url = "github:jamescherti/minimal-emacs.d";
+      flake = false;
+    };
   };
 
   outputs =
