@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -22,7 +23,8 @@
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # FIXME: temporary hack, see https://github.com/nix-community/emacs-overlay/issues/479
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     minimal-emacs-d = {
@@ -41,6 +43,7 @@
     {
       homeConfigurations = {
         ubuntu-home = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
           inherit pkgs;
           modules = [
             inputs.nvf.homeManagerModules.default
