@@ -3,6 +3,7 @@
 
   programs.tmux = {
     enable = true;
+    shell = "${pkgs.fish}/bin/fish";
     clock24 = true;
     mouse = true;
     keyMode = "vi";

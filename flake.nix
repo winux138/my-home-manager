@@ -14,22 +14,40 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {
+      nixpkgs,
+      home-manager,
+      firefox-addons,
+      ...
+    }@inputs:
     let
-      lib = nixpkgs.lib;
+      # lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
     in
     {
       homeConfigurations = {
         ubuntu-home = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
           inherit pkgs;
           modules = [
             inputs.nvf.homeManagerModules.default
             ./home.nix
+          ];
+        };
+        ubuntu-office = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs home-manager; };
+          inherit pkgs;
+          modules = [
+            inputs.nvf.homeManagerModules.default
+            ./home-office.nix
           ];
         };
       };

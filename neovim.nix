@@ -23,7 +23,10 @@
 
       statusline.lualine.enable = true;
       telescope.enable = true;
-      autocomplete.nvim-cmp.enable = true;
+      autocomplete.nvim-cmp = {
+        enable = true;
+        setupOpts.completion.completeopt = "fuzzy,menu,popup";
+      };
       dashboard.alpha.enable = true;
       notes.todo-comments.enable = true;
 
@@ -40,12 +43,16 @@
       utility = {
         motion.flash-nvim.enable = true;
         surround.enable = true;
+        multicursors.enable = true;
       };
 
       extraPlugins = {
         # Opencode = {
         #   package = pkgs.vimPlugins.opencode-nvim;
         # };
+        nvim-remote-containers = {
+          package = pkgs.vimPlugins.nvim-remote-containers;
+        };
         lush = {
           package = pkgs.vimPlugins.lush-nvim;
         };
@@ -73,15 +80,17 @@
         };
       };
 
+      lsp.enable = true;
       languages = {
-        # enableTreesitter = true;
+        enableTreesitter = true;
         enableFormat = true;
 
+        json.enable = true;
         nix.enable = true;
         python.enable = true;
         rust = {
           enable = true;
-          crates.enable = true;
+          extensions.crates-nvim.enable = true;
           lsp.opts = ''
             ['rust-analyzer'] = {
               cargo = {allFeature = true},
@@ -93,10 +102,6 @@
         };
         ts.enable = true;
         clang.enable = true;
-      };
-
-      lsp = {
-        enable = true;
       };
     };
   };

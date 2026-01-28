@@ -5,8 +5,8 @@
     lfs.enable = true;
 
     settings = {
-      user.name = "ju";
-      user.email = "thomas.julien@protonmail.com";
+      user.name = "Julien Thomas";
+      user.email = "julien.thomas@external.roche.com";
 
       branch.sort = "-committerdate";
       column.ui = "auto";
