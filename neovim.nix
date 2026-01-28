@@ -47,15 +47,6 @@
       };
 
       extraPlugins = {
-        # Opencode = {
-        #   package = pkgs.vimPlugins.opencode-nvim;
-        # };
-        nvim-remote-containers = {
-          package = pkgs.vimPlugins.nvim-remote-containers;
-        };
-        lush = {
-          package = pkgs.vimPlugins.lush-nvim;
-        };
         zenbones = {
           package = pkgs.vimPlugins.zenbones-nvim;
           setup = ''
@@ -76,6 +67,7 @@
           };
           # setup = ''
           #   vim.cmd('colorscheme antiphoton')
+          #   vim.cmd('set background=light')
           # '';
         };
       };
