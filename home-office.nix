@@ -77,6 +77,7 @@
       lazygit
       helix
       direnv
+      zathura
 
       fd
       ripgrep

@@ -47,6 +47,8 @@
       };
 
       extraPlugins = {
+        # required for zenbones
+        lush.package = pkgs.vimPlugins.lush-nvim;
         zenbones = {
           package = pkgs.vimPlugins.zenbones-nvim;
           setup = ''
