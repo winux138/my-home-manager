@@ -64,6 +64,7 @@
       # proprietary / work related
       # vscode
 
+      krita
       kitty
       keepassxc
       # quickshell
