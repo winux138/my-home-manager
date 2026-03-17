@@ -24,6 +24,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       firefox-addons,
       ...
@@ -32,6 +33,7 @@
       # lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      unstable = import nixpkgs-unstable { inherit system; };
     in
     {
       homeConfigurations = {
@@ -44,7 +46,7 @@
           ];
         };
         ubuntu-office = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs home-manager; };
+          extraSpecialArgs = { inherit inputs home-manager unstable; };
           inherit pkgs;
           modules = [
             inputs.nvf.homeManagerModules.default

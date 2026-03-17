@@ -2,6 +2,7 @@
   inputs,
   # lib,
   pkgs,
+  unstable,
   ...
 }:
 # let
@@ -94,7 +95,7 @@
       eza
       dust
       tree
-      opencode
+      unstable.opencode
       curl
 
       direnv
