@@ -40,7 +40,6 @@
     };
   };
 
-  services.safeeyes.enable = true;
   services.snixembed = {
     enable = true;
 
@@ -49,6 +48,7 @@
       "safeeyes.service"
     ];
   };
+  services.safeeyes.enable = true;
 
   programs.firefox = {
     enable = true;
@@ -64,6 +64,8 @@
       # proprietary / work related
       # vscode
 
+      plantuml
+      pandoc
       krita
       kitty
       keepassxc
@@ -103,6 +105,7 @@
       dina-font
       liberation_ttf
       mplus-outline-fonts.githubRelease
+      nerd-fonts.hack
       nerd-fonts.iosevka
       nerd-fonts.symbols-only
       noto-fonts
