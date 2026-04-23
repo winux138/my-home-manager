@@ -9,14 +9,13 @@
 # in
 {
   imports = [
-    ./neovim.nix
     ./git.nix
     ./tmux.nix
     ./polybar.nix
   ];
 
   programs.home-manager.enable = true;
-  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   programs.bash.enable = true;
   programs.bash.initExtra = ''
@@ -41,16 +40,6 @@
     };
   };
 
-  services.snixembed = {
-    enable = true;
-
-    beforeUnits = [
-      # https://github.com/slgobinath/SafeEyes/wiki/How-to-install-backend-for-Safe-Eyes-tray-icon
-      "safeeyes.service"
-    ];
-  };
-  services.safeeyes.enable = true;
-
   programs.firefox = {
     enable = true;
     profiles.thomaj81.extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
@@ -60,11 +49,30 @@
     ];
   };
 
+  programs.gh = {
+    enable = true;
+    extensions = with pkgs; [
+      gh-f
+      gh-i
+      gh-s
+      gh-cal
+      gh-dash
+      gh-notify
+      gh-copilot
+      gh-skyline
+    ];
+
+    settings = {
+      git_protocol = "ssh";
+    };
+  };
+
   home = {
     packages = with pkgs; [
       # proprietary / work related
       # vscode
 
+      meld
       plantuml
       pandoc
       krita
