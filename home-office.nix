@@ -60,6 +60,18 @@
       gh-notify
       gh-copilot
       gh-skyline
+
+      (pkgs.buildGoModule {
+        pname = "gh-pr-review";
+        version = "1.6.2";
+        src = pkgs.fetchFromGitHub {
+          owner = "agynio";
+          repo = "gh-pr-review";
+          rev = "v1.6.2";
+          hash = "sha256-1TINm9rMckjAG7nyBR5AqSqWpzVp6ey7c1wm98s488w=";
+        };
+        vendorHash = "sha256-CEV23koYz0FpSWXJRF4J+dGNuDT8Ftkn4LGFftvd0ts=";
+      })
     ];
 
     settings = {
