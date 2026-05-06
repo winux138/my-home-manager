@@ -49,33 +49,20 @@
     ];
   };
 
-  programs.gh = {
+  programs.opencode = {
     enable = true;
-    extensions = with pkgs; [
-      gh-f
-      gh-i
-      gh-s
-      gh-cal
-      gh-dash
-      gh-notify
-      gh-copilot
-      gh-skyline
+    package = unstable.opencode;
+    agents = {
+      AGENTS = ''
+        Drop: articles (a/an/the), filler (just/really/basically/actually/simply), pleasantries (sure/certainly/of course/happy to), hedging. Fragments OK. Short synonyms (big not extensive, fix not "implement a solution for"). Technical terms exact. Code blocks unchanged. Errors quoted exact.
 
-      (pkgs.buildGoModule {
-        pname = "gh-pr-review";
-        version = "1.6.2";
-        src = pkgs.fetchFromGitHub {
-          owner = "agynio";
-          repo = "gh-pr-review";
-          rev = "v1.6.2";
-          hash = "sha256-1TINm9rMckjAG7nyBR5AqSqWpzVp6ey7c1wm98s488w=";
-        };
-        vendorHash = "sha256-CEV23koYz0FpSWXJRF4J+dGNuDT8Ftkn4LGFftvd0ts=";
-      })
-    ];
+        Pattern: `[thing] [action] [reason]. [next step].`
 
-    settings = {
-      git_protocol = "ssh";
+        Not: "Sure! I'd be happy to help you with that. The issue you're experiencing is likely caused by..."
+        Yes: "Bug in auth middleware. Token expiry check use `<` not `<=`. Fix:"
+
+        Favor simple, short and concise changes. Don't yap, no fluff.
+      '';
     };
   };
 
@@ -115,7 +102,6 @@
       eza
       dust
       tree
-      unstable.opencode
       curl
 
       direnv
