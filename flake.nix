@@ -26,16 +26,37 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      nvf,
       firefox-addons,
       ...
     }@inputs:
     let
-      # lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       unstable = import nixpkgs-unstable { inherit system; };
+
+      # Standalone neovim, reusing the exact settings from neovim.nix.
+      neovim =
+        (nvf.lib.neovimConfiguration {
+          inherit pkgs;
+          modules = [ { config.vim = (import ./neovim.nix { inherit pkgs; }).programs.nvf.settings.vim; } ];
+        }).neovim;
     in
     {
+      # Binaries exposed by this flake. Run any of them with:
+      #   nix run github:<owner>/<repo>#<name>
+      # Add more by dropping another entry in packages/apps below.
+      packages.${system} = {
+        neovim = neovim;
+      };
+
+      apps.${system} = {
+        neovim = {
+          type = "app";
+          program = "${neovim}/bin/nvim";
+        };
+      };
+
       homeConfigurations = {
         ubuntu-home = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs; };
