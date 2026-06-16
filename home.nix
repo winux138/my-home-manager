@@ -40,7 +40,6 @@ in
       eza
       dust
       tree
-      opencode
       curl
 
       # fonts
