@@ -1,6 +1,7 @@
 {
   inputs,
   # lib,
+  config,
   pkgs,
   unstable,
   ...
@@ -49,11 +50,9 @@
     ];
   };
 
-  programs.pi-coding-agent = {
-    enable = true;
-    package = unstable.pi-coding-agent;
-    configDir = "${config.home.homeDirectory}/Notes/pi";
-  };
+  # programs.pi-coding-agent module is HM-master only (absent in release-26.05),
+  # so install the package and point the CLI at the config dir manually.
+  home.sessionVariables.PI_CODING_AGENT_DIR = "${config.home.homeDirectory}/Notes/pi";
 
   programs.opencode = {
     enable = true;
@@ -121,7 +120,7 @@
   };
 
   home = {
-    packages = with pkgs; [
+    packages = (with pkgs; [
       # proprietary / work related
       # vscode
 
@@ -175,6 +174,8 @@
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       # proggyfonts
+    ]) ++ [
+      unstable.pi-coding-agent
     ];
 
     username = "thomaj81";
