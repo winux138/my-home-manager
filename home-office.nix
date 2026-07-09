@@ -11,6 +11,7 @@
 {
   imports = [
     ./git.nix
+    ./helix.nix
     ./tmux.nix
     ./polybar.nix
   ];
@@ -141,7 +142,6 @@
       xclip
       arandr
       lazygit
-      helix
       direnv
       zathura
 

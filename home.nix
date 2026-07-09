@@ -25,7 +25,6 @@ in
       xclip
       arandr
       lazygit
-      helix
       direnv
 
       fd

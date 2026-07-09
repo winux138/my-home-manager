@@ -15,6 +15,7 @@
       set -ag terminal-overrides ",st-256color:RGB"
       set -g extended-keys always
       set -as terminal-features 'xterm*:extkeys'
+      set -g extended-keys-format csi-u
     '';
   };
 }
