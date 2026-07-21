@@ -4,10 +4,12 @@
   config,
   pkgs,
   unstable,
+  nixgl,
   ...
 }:
-# let
-# in
+let
+  wrap = config.lib.nixGL.wrap;
+in
 {
   imports = [
     ./git.nix
@@ -18,6 +20,12 @@
 
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
+
+  targets.genericLinux.nixGL = {
+    packages = nixgl.packages;
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ]; # provides `nixGLMesa` command for manual use (e.g. picom)
+  };
 
   programs.bash.enable = true;
   programs.bash.initExtra = ''
@@ -44,6 +52,7 @@
 
   programs.firefox = {
     enable = true;
+    package = wrap pkgs.firefox;
     profiles.thomaj81.extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
       ublock-origin
       consent-o-matic
@@ -130,10 +139,10 @@
       meld
       plantuml
       pandoc
-      krita
-      kitty
+      (wrap krita)
+      (wrap kitty)
       keepassxc
-      # quickshell
+      (wrap quickshell)
       polybar
       brightnessctl
       flameshot
@@ -158,6 +167,7 @@
       dust
       tree
       curl
+      rsync
 
       direnv
       nix-your-shell

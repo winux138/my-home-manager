@@ -19,6 +19,11 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,6 +33,7 @@
       home-manager,
       nvf,
       firefox-addons,
+      nixgl,
       ...
     }@inputs:
     let
@@ -67,7 +73,7 @@
           ];
         };
         ubuntu-office = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs home-manager unstable; };
+          extraSpecialArgs = { inherit inputs home-manager unstable nixgl; };
           inherit pkgs;
           modules = [
             inputs.nvf.homeManagerModules.default
