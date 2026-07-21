@@ -5,6 +5,7 @@ in
   imports = [
     ./neovim.nix
     ./git.nix
+    ./kitty.nix
     ./tmux.nix
     ./polybar.nix
   ];
@@ -15,7 +16,6 @@ in
 
   home = {
     packages = with pkgs; [
-      kitty
       keepassxc
       # quickshell
       polybar

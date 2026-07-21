@@ -14,6 +14,7 @@ in
   imports = [
     ./git.nix
     ./helix.nix
+    ./kitty.nix
     ./tmux.nix
     ./polybar.nix
   ];
@@ -40,6 +41,8 @@ in
 
   fonts.fontconfig.enable = true;
 
+  programs.kitty.package = wrap pkgs.kitty;
+
   programs.foot = {
     enable = true;
     settings = {
@@ -53,7 +56,8 @@ in
   programs.firefox = {
     enable = true;
     package = wrap pkgs.firefox;
-    profiles.thomaj81.extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
+    profiles.thomaj81.extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
       ublock-origin
       consent-o-matic
       tridactyl
@@ -73,7 +77,7 @@ in
       "/home/thomaj81/Notes/ai/memory/git.md"
     ];
 
-    rules = ''
+    context = ''
       Respond terse like smart caveman. All technical substance stay. Only fluff die.
 
       ## Persistence
@@ -140,7 +144,6 @@ in
       plantuml
       pandoc
       (wrap krita)
-      (wrap kitty)
       keepassxc
       (wrap quickshell)
       polybar

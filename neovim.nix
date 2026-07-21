@@ -73,7 +73,13 @@
         };
       };
 
-      lsp.enable = true;
+      lsp = {
+        enable = true;
+        servers.rust-analyzer.settings."rust-analyzer" = {
+          cargo.allFeatures = true;
+          procMacro.enable = true;
+        };
+      };
       languages = {
         enableTreesitter = true;
         enableFormat = true;
@@ -84,16 +90,8 @@
         rust = {
           enable = true;
           extensions.crates-nvim.enable = true;
-          lsp.opts = ''
-            ['rust-analyzer'] = {
-              cargo = {allFeature = true},
-              procMacro = {
-                enable = true,
-              },
-            },
-          '';
         };
-        ts.enable = true;
+        typescript.enable = true;
         clang.enable = true;
       };
     };
