@@ -1,4 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
+let
+  delta = "${pkgs.delta}/bin/delta";
+in
 {
   programs.git = {
     enable = true;
@@ -10,6 +13,7 @@
 
       branch.sort = "-committerdate";
       column.ui = "auto";
+      core.editor = "hx";
       commit.verbose = true;
       diff = {
         algorithm = "histogram";
@@ -42,6 +46,28 @@
         enabled = true;
       };
       tag.sort = "version:refname";
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      dark = true;
+      line-numbers = true;
+      navigate = true;
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git.pagers = [
+        {
+          pager = "${delta} --paging=never --hyperlinks --hyperlinks-file-link-format=lazygit-edit://{path}:{line}";
+        }
+        { } # built-in lazygit diff, available via `|`
+      ];
     };
   };
 

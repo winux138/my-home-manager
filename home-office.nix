@@ -153,7 +153,6 @@ in
 
       xclip
       arandr
-      lazygit
       direnv
       zathura
 

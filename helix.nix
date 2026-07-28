@@ -1,7 +1,8 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs.helix = {
     enable = true;
+    # Sets EDITOR and VISUAL to hx globally.
     defaultEditor = true;
     settings = {
       theme = "papercolor-light";

@@ -3,7 +3,7 @@ let
 in
 {
   imports = [
-    ./neovim.nix
+    ./helix.nix
     ./git.nix
     ./kitty.nix
     ./tmux.nix
@@ -24,7 +24,6 @@ in
 
       xclip
       arandr
-      lazygit
       direnv
 
       fd
