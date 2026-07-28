@@ -20,6 +20,10 @@
         registers = "unnamedplus";
       };
 
+      # plugins to explore:
+      # - https://github.com/SmiteshP/nvim-navic
+      # - https://github.com/hasansujon786/nvim-navbuddy
+
       statusline.lualine.enable = true;
       telescope.enable = true;
       autocomplete.nvim-cmp = {
