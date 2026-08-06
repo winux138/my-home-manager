@@ -3,7 +3,8 @@
   programs.kitty = {
     enable = true;
 
-    font.name = "Iosevka Nerd Font";
+    # Medium weight: slightly bolder than Regular.
+    font.name = ''family="Iosevka Nerd Font" style="Medium"'';
     themeFile = "Solarized_Light";
 
     # Kitty configuration goes here.
