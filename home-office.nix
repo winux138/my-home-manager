@@ -17,6 +17,7 @@ in
     ./kitty.nix
     ./tmux.nix
     ./polybar.nix
+    ./pi.nix
   ];
 
   programs.home-manager.enable = true;
@@ -63,10 +64,6 @@ in
       tridactyl
     ];
   };
-
-  # programs.pi-coding-agent module is HM-master only (absent in release-26.05),
-  # so install the package and point the CLI at the config dir manually.
-  home.sessionVariables.PI_CODING_AGENT_DIR = "${config.home.homeDirectory}/Notes/pi";
 
   programs.opencode = {
     enable = true;
@@ -186,9 +183,7 @@ in
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       # proggyfonts
-    ]) ++ [
-      unstable.pi-coding-agent
-    ];
+    ]);
 
     username = "thomaj81";
     homeDirectory = "/home/thomaj81";
