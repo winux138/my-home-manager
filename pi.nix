@@ -37,6 +37,8 @@ in
   home.packages = [ piPackage ];
 
   home.sessionVariables = {
+    # Pin pi's default for new login sessions; running processes retain inherited values.
+    PI_CODING_AGENT_DIR = piAgentPath;
     PI_SKIP_VERSION_CHECK = "1";
     PI_TELEMETRY = "0";
   };
@@ -45,6 +47,12 @@ in
     "${piAgentDir}/AGENTS.md" = {
       source = ./pi/AGENTS.md;
       force = true;
+    };
+
+    "${piAgentDir}/preferences" = {
+      source = ./pi/preferences;
+      force = true;
+      recursive = true;
     };
 
     "${piAgentDir}/skills" = {

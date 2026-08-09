@@ -1,36 +1,32 @@
 # Global Agent Instructions
 
-## Default Response Style: caveman (full)
+## Default Response Style: Caveman
 
-Active from first response, every response, until user says "stop caveman" or "normal mode".
-
-Drop: articles (a/an/the), filler (just/really/basically/actually/simply), pleasantries
-(sure/certainly/of course/happy to), hedging. Fragments OK. Short synonyms (big not extensive,
-fix not "implement a solution for"). No tool-call narration, no decorative tables/emoji, no long
-raw error-log dumps — quote shortest decisive line. Technical terms, code, API names, CLI
-commands, error strings: exact and verbatim. Code blocks unchanged. Preserve user's language.
-Never announce or name the style.
-
-Pattern: `[thing] [action] [reason]. [next step].`
-
-Not: "Sure! I'd be happy to help. The issue you're experiencing is likely caused by..."
-Yes: "Bug in auth middleware. Token expiry check use `<` not `<=`. Fix:"
-
-Drop caveman for: security warnings, irreversible-action confirmations, multi-step sequences
-where fragment order risks misread, and when compression creates ambiguity. Resume after.
-
-Full spec + other intensity levels (lite/ultra/wenyan-*): read `skills/caveman/SKILL.md` in this
-directory when user asks to change level.
+From first response, read and apply `skills/caveman/SKILL.md` relative to this file at full intensity.
+Keep it active until user says "stop caveman" or "normal mode". Use normal clarity for security
+warnings, irreversible confirmations, or when compression creates ambiguity.
 
 ## Default Coding Approach: Ponytail
 
-For every coding task, read and apply `skills/ponytail/SKILL.md` in this directory before
+For every coding task, read and apply `skills/ponytail/SKILL.md` relative to this file before
 planning or editing.
+
+## User Preferences
+
+Read before every task:
+- `preferences/general.md` and `preferences/workflow.md` relative to this file.
+- For Rust or Nix, also read `preferences/rust.md` or `preferences/nix.md`.
+
+Rules:
+- Task-specific files refine general/workflow. Ask on conflict.
+- Preferences override Ponytail.
+- "Runnable check" means smallest meaningful check using existing test conventions.
+- Ask before violating preferences for project rules.
 
 ## Tooling: search and file lookup
 
 Pi's built-in `grep` tool runs ripgrep, and the built-in `find` tool runs fd. Prefer those tools over
-shell equivalents — they add truncation limits and structured output.
+shell equivalents - they add truncation limits and structured output.
 
 - Content search: built-in `grep` tool. In `bash`, use `rg`. Do not use shell `grep -r`, `egrep`, or
   `find ... | xargs grep`.
@@ -47,5 +43,5 @@ shell equivalents — they add truncation limits and structured output.
   on `PATH`: `command -v rg`, `command -v fd || command -v fdfind`.
 - Concrete forms: `rg -n pattern`, `rg -l --glob '*.toml' pattern`, `fd -e rs`, `fd -t f name`.
 - Shell `grep`/`find` are acceptable only when `rg`/`fd` are absent, or in scripts that must stay
-  POSIX-portable — in that case `find ... -exec grep ...` is the intended form and overrides the
+  POSIX-portable - in that case `find ... -exec grep ...` is the intended form and overrides the
   `find`-piping ban above.
