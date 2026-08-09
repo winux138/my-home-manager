@@ -9,10 +9,20 @@ let
   piPackage = unstable.pi-coding-agent;
   piAgentDir = ".pi/agent";
   piAgentPath = "${config.home.homeDirectory}/${piAgentDir}";
-  piLegacyCheckerPath = "${piAgentPath}/agents/checker.md";
   piSettingsPath = "${piAgentPath}/settings.json";
-  # Keep extension source coupled to package version; package layout changes fail during build.
-  subagentExample = "${piPackage}/lib/node_modules/pi-monorepo/examples/extensions/subagent";
+  # Delete this list together with its cleanup command after every host has migrated.
+  legacyPiFiles = map (path: "${piAgentPath}/${path}") [
+    "agents/checker.md"
+    "agents/planner.md"
+    "agents/reviewer.md"
+    "agents/scout.md"
+    "agents/worker.md"
+    "prompts/implement-and-review.md"
+    "prompts/implement.md"
+    "prompts/scout-and-plan.md"
+    "extensions/subagent/agents.ts"
+    "extensions/subagent/index.ts"
+  ];
   settings = (pkgs.formats.json { }).generate "pi-settings.json" {
     lastChangelogVersion = piPackage.version;
     defaultProvider = "github-copilot";
@@ -37,37 +47,20 @@ in
       force = true;
     };
 
-    "${piAgentDir}/agents" = {
-      source = ./pi/agents;
-      force = true;
-      recursive = true;
-    };
-
-    "${piAgentDir}/prompts" = {
-      source = ./pi/prompts;
-      force = true;
-      recursive = true;
-    };
-
     "${piAgentDir}/skills" = {
       source = ./pi/skills;
       force = true;
       recursive = true;
     };
-
-    "${piAgentDir}/extensions/subagent" = {
-      source = subagentExample;
-      force = true;
-      recursive = true;
-    };
   };
 
-  # Keep directory hardening. Remove only checker cleanup after every host has migrated.
   home.activation.preparePiAgentDir =
     lib.hm.dag.entryBetween [ "linkGeneration" ] [ "writeBoundary" ]
       ''
+        # Agent directory contains credentials and session data.
         run install -d -m700 ${lib.escapeShellArg piAgentPath}
-        run rm -f ${lib.escapeShellArg piLegacyCheckerPath}
+        # Remove exact pre-Home-Manager resources; retire with legacyPiFiles above.
+        run rm -f ${lib.escapeShellArgs legacyPiFiles}
       '';
 
   home.activation.writePiSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''

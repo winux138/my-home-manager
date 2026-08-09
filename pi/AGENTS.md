@@ -22,6 +22,11 @@ where fragment order risks misread, and when compression creates ambiguity. Resu
 Full spec + other intensity levels (lite/ultra/wenyan-*): read `skills/caveman/SKILL.md` in this
 directory when user asks to change level.
 
+## Default Coding Approach: Ponytail
+
+For every coding task, read and apply `skills/ponytail/SKILL.md` in this directory before
+planning or editing.
+
 ## Tooling: search and file lookup
 
 Pi's built-in `grep` tool runs ripgrep, and the built-in `find` tool runs fd. Prefer those tools over
@@ -44,15 +49,3 @@ shell equivalents — they add truncation limits and structured output.
 - Shell `grep`/`find` are acceptable only when `rg`/`fd` are absent, or in scripts that must stay
   POSIX-portable — in that case `find ... -exec grep ...` is the intended form and overrides the
   `find`-piping ban above.
-
-## Long-Term Context
-
-At session start read `skills/long-term-context/BASELINE.md`, then
-`skills/long-term-context/CONTEXT.md` when present. Apply all entries. Update writable
-`CONTEXT.md` only, per that skill's instructions.
-
-## Post-Task Quality Check
-
-After completing any code change task, run the `reviewer` subagent on the changed files. Pass it
-the list of files modified. Report findings before considering the task done. Fix violations
-before reporting completion.
