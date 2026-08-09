@@ -41,6 +41,8 @@
       pkgs = import nixpkgs { inherit system; };
       unstable = import nixpkgs-unstable { inherit system; };
 
+      piPackage = unstable.pi-coding-agent;
+
       # Standalone neovim, reusing the exact settings from neovim.nix.
       neovim =
         (nvf.lib.neovimConfiguration {
@@ -54,12 +56,19 @@
       # Add more by dropping another entry in packages/apps below.
       packages.${system} = {
         neovim = neovim;
+        # For hosts without ubuntu-office Home Manager: `nix profile install .#pi`.
+        # ubuntu-office already installs this same package.
+        pi = piPackage;
       };
 
       apps.${system} = {
         neovim = {
           type = "app";
           program = "${neovim}/bin/nvim";
+        };
+        pi = {
+          type = "app";
+          program = nixpkgs.lib.getExe piPackage;
         };
       };
 
@@ -73,7 +82,7 @@
           ];
         };
         ubuntu-office = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs home-manager unstable nixgl; };
+          extraSpecialArgs = { inherit inputs home-manager unstable nixgl piPackage; };
           inherit pkgs;
           modules = [
             inputs.nvf.homeManagerModules.default

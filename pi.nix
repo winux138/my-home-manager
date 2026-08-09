@@ -2,11 +2,10 @@
   config,
   lib,
   pkgs,
-  unstable,
+  piPackage,
   ...
 }:
 let
-  piPackage = unstable.pi-coding-agent;
   piAgentDir = ".pi/agent";
   piAgentPath = "${config.home.homeDirectory}/${piAgentDir}";
   piSettingsPath = "${piAgentPath}/settings.json";
