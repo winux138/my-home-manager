@@ -3,7 +3,6 @@
   # lib,
   config,
   pkgs,
-  unstable,
   nixgl,
   ...
 }:
@@ -63,23 +62,6 @@ in
       consent-o-matic
       tridactyl
     ];
-  };
-
-  programs.opencode = {
-    enable = true;
-    package = unstable.opencode;
-
-    settings.instructions = [
-      "/home/thomaj81/Notes/ai/memory/rust.md"
-      "/home/thomaj81/Notes/ai/memory/git.md"
-    ];
-
-    context = builtins.readFile ./pi/skills/kem-reply/SKILL.md + ''
-
-      ## Long-term memory
-      Memory: /home/thomaj81/Notes/ai/memory/rust.md and /home/thomaj81/Notes/ai/memory/git.md (loaded via instructions).
-      When the user corrects you (preference, naming, tooling, repeated mistake), append a one-line dated bullet to the matching file. Check first - never record the same correction twice. If neither fits, create a new file in that memory dir.
-    '';
   };
 
   home = {
