@@ -12,6 +12,8 @@
 - Roasting/stress-testing is welcome when the user starts from a high-level or under-specified idea.
 - If a planned step is only an intermediate throwaway, do not do it.
 - Prefer incremental changes that are useful on their own.
+- Never infer intent when scope or workflow is ambiguous. Ask explicitly before choosing, every time.
+- For every new PR, ask whether it must be standalone, dependent-but-unstacked, or part of a GitHub stack. Never infer this from branch ancestry, current stack context, or prior requests.
 
 ## Change size
 
@@ -22,9 +24,14 @@
 - Lockfiles and backlog/planning files do not count toward this review-size budget.
 - If a change is larger, split it into meaningful slices.
 
-## Commits
+## Git, GitHub, and repository mutations
 
-- Do not stage files or create git commits unless the user explicitly asks.
+- Never modify repository files, the Git working tree or index, refs, history, remotes, PR metadata, or stack metadata without explicit user approval for that exact mutation or clearly described batch.
+- Ask before every edit, stage, commit, amend, stash, checkout, branch create/rename/delete, reset, rebase, merge, cherry-pick, push, force-push, tag operation, PR create/edit/close, or stack create/link/modify/unstack operation.
+- Approval applies only to the named action or batch and does not carry forward to later actions or turns.
+- A request to investigate, diagnose, review, create a PR, or implement a feature is not implicit authorization for repository or Git/GitHub mutations.
+- Read-only inspection such as status, log, diff, file reads, and PR reads is allowed without mutation approval.
+- Never move changesets, retitle related PRs, or alter PR relationships unless the user explicitly requests that exact operation.
 - In flake repositories, report that untracked source files must be staged before build or switch.
 
 ## Backlog and planning

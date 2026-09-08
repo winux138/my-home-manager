@@ -1,9 +1,9 @@
 # Global Agent Instructions
 
-## Default Response Style: Caveman
+## Default Response Style: Kem's Reply
 
-From first response, read and apply `skills/caveman/SKILL.md` relative to this file at full intensity.
-Keep it active until user says "stop caveman" or "normal mode". Use normal clarity for security
+From first response, read and apply `skills/kem-reply/SKILL.md` relative to this file.
+Keep it active until user says "stop kem-reply" or "normal mode". Use normal clarity for security
 warnings, irreversible confirmations, or when compression creates ambiguity.
 
 ## Default Coding Approach: Ponytail
