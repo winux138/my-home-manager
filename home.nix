@@ -3,6 +3,7 @@ let
 in
 {
   imports = [
+    ./cli-common.nix
     ./helix.nix
     ./git.nix
     ./kitty.nix

@@ -11,6 +11,7 @@ let
 in
 {
   imports = [
+    ./cli-common.nix
     ./fish.nix
     ./git.nix
     ./helix.nix
@@ -63,8 +64,6 @@ in
     packages = (with pkgs; [
       # proprietary / work related
       # vscode
-
-      gh
 
       meld
       plantuml

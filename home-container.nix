@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./cli-common.nix
     ./fish.nix
     ./git.nix
     ./helix.nix
@@ -38,7 +39,6 @@
       fastfetch
       fd
       fzf
-      gh
       htop
       ouch
       ripgrep
