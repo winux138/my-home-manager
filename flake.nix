@@ -59,6 +59,11 @@
         # For hosts without ubuntu-office Home Manager: `nix profile install .#pi`.
         # ubuntu-office already installs this same package.
         pi = piPackage;
+        # Home Manager from this flake's locked input. Hosts without it installed can
+        # `nix run .#home-manager -- switch --flake .#<config>`; resolving
+        # `home-manager/release-26.05` instead goes through api.github.com, which
+        # rate-limits anonymous requests from shared-egress containers.
+        home-manager = home-manager.packages.${system}.home-manager;
       };
 
       apps.${system} = {
@@ -87,6 +92,15 @@
           modules = [
             inputs.nvf.homeManagerModules.default
             ./home-office.nix
+          ];
+        };
+        # Headless container / devcontainer: terminal tooling only, runs as root.
+        ona = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs unstable piPackage; };
+          inherit pkgs;
+          modules = [
+            inputs.nvf.homeManagerModules.default
+            ./home-container.nix
           ];
         };
       };

@@ -11,6 +11,7 @@ let
 in
 {
   imports = [
+    ./fish.nix
     ./git.nix
     ./helix.nix
     ./kitty.nix
@@ -31,12 +32,6 @@ in
   programs.bash.enable = true;
   programs.bash.initExtra = ''
     eval "$(direnv hook bash)"
-  '';
-  programs.fish.enable = true;
-  programs.fish.interactiveShellInit = ''
-    if command -q nix-your-shell
-      nix-your-shell fish | source
-    end
   '';
 
   fonts.fontconfig.enable = true;
@@ -103,7 +98,6 @@ in
       rsync
 
       direnv
-      nix-your-shell
 
       # fonts
       font-awesome
