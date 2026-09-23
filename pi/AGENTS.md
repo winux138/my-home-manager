@@ -1,10 +1,10 @@
 # Global Agent Instructions
 
-## Default Response Style: Kem's Reply
+## Default Response Style: Simple English
 
-From first response, read and apply `skills/kem-reply/SKILL.md` relative to this file.
-Keep it active until user says "stop kem-reply" or "normal mode". Use normal clarity for security
-warnings, irreversible confirmations, or when compression creates ambiguity.
+From the first response, read and apply `skills/simple-english/SKILL.md` relative to this file.
+Keep it active until the user says "stop simple-english" or "normal mode". Use normal clarity for
+security warnings, irreversible confirmations, or when simple English creates ambiguity.
 
 ## Default Coding Approach: Ponytail
 
