@@ -4,7 +4,7 @@ Read this file for CHECK mode, for Strict mode, or when a rule number is in ques
 
 53 rules in 9 sections, paraphrased from ASD-STE100 Issue 9 with software examples. Rules marked (S) are Strict mode only (see `references/strict-vocabulary.md`). The official wording is in the free standard at asd-ste100.org.
 
-### Section 1 — Words (Rules 1.1-1.14)
+### Section 1  Words (Rules 1.1-1.14)
 
 | Rule | Instruction |
 |---|---|
@@ -24,7 +24,7 @@ In Plain mode, rules 1.5, 1.8, and 1.12 make your domain vocabulary legal. The o
 **Before:** You can webhook the event, then do a deploy.
 **After:** Send the event to the webhook. Then deploy the service.
 
-### Section 2 — Multi-word nouns (Rules 2.1-2.2)
+### Section 2  Multi-word nouns (Rules 2.1-2.2)
 
 | Rule | Instruction |
 |---|---|
@@ -36,7 +36,7 @@ Break long noun chains with prepositions (of, on, in, for):
 **Before:** the connection pool timeout configuration value
 **After:** the timeout value for the connection pool
 
-### Section 3 — Verbs (Rules 3.1-3.7)
+### Section 3  Verbs (Rules 3.1-3.7)
 
 | Rule | Instruction |
 |---|---|
@@ -45,13 +45,13 @@ Break long noun chains with prepositions (of, on, in, for):
 | 3.3 | Use the past participle only as an adjective ("the cached response"). |
 | 3.4 | No auxiliary verbs for complex constructions. No present perfect, no "is to be installed". |
 | 3.5 | Use an "-ing" form only as a technical noun or inside one ("logging", "the mounting bracket"), never as a verb. |
-| 3.6 | Active voice. In descriptive text, passive is legal only when the agent is unknown. To repair an agentless passive, use "you" (the reader) or "we" (your company): "Indexes are not used on this table" → "We do not use indexes on this table." |
+| 3.6 | Active voice. In descriptive text, passive is legal only when the agent is unknown. To repair an agentless passive, use "you" (the reader) or "we" (your company): "Indexes are not used on this table"  "We do not use indexes on this table." |
 | 3.7 | Describe an action with a verb, not a noun ("compress the file", not "perform compression of the file"). |
 
 **Approved modals: can, will, must. Banned: should, would, may, might, could.**
 The modal ladder below routes each banned modal. This matters double for agent instructions, because models read "should" as optional.
 
-### Section 4 — Sentences (Rules 4.1-4.5)
+### Section 4  Sentences (Rules 4.1-4.5)
 
 | Rule | Instruction |
 |---|---|
@@ -66,7 +66,7 @@ Rule 4.2 is the anti-terseness rule. Plain English is short sentences with compl
 **Wrong shortening:** Ensure file exists before running.
 **Plain:** Make sure that the file exists before you run the command.
 
-### Section 5 — Procedural writing (Rules 5.1-5.5)
+### Section 5  Procedural writing (Rules 5.1-5.5)
 
 | Rule | Instruction |
 |---|---|
@@ -79,7 +79,7 @@ Rule 4.2 is the anti-terseness rule. Plain English is short sentences with compl
 **Before:** You'll want to grab the API key from the dashboard before configuring the client, which you can do under Settings.
 **After:** Get the API key from the dashboard, under Settings. Then configure the client with this key.
 
-### Section 6 — Descriptive writing (Rules 6.1-6.6)
+### Section 6  Descriptive writing (Rules 6.1-6.6)
 
 | Rule | Instruction |
 |---|---|
@@ -90,7 +90,7 @@ Rule 4.2 is the anti-terseness rule. Plain English is short sentences with compl
 | 6.5 | One topic per paragraph. |
 | 6.6 | Maximum six sentences per paragraph. |
 
-### Section 7 — Safety instructions (Rules 7.1-7.3)
+### Section 7  Safety instructions (Rules 7.1-7.3)
 
 | Rule | Instruction |
 |---|---|
@@ -103,7 +103,7 @@ Never bury the instruction after the explanation. The same pattern fits destruct
 **Before:** Note that data loss may occur in some circumstances if the destructive flag happens to be enabled when running against production.
 **After:** CAUTION: Do not use the `--force` flag against production. The flag deletes rows that do not match the source.
 
-### Section 8 — Punctuation and word count (Rules 8.1-8.7)
+### Section 8  Punctuation and word count (Rules 8.1-8.7)
 
 | Rule | Instruction |
 |---|---|
@@ -115,9 +115,9 @@ Never bury the instruction after the explanation. The same pattern fits destruct
 
 Rule 8.6 matters for software text: `sqlpipe run --config sqlpipe.yaml` in backticks counts as one word.
 
-**Dashes** (this skill, not the standard). An em-dash (`—`) splices two statements and hides the logic between them. Name the relation ("because", "but", "for example") or write two sentences. A spaced or double hyphen between statements is the same dash. A range (`5–10`), a list marker, and a flag (`--force`) are not.
+**Dashes** (this skill, not the standard). An em-dash (``) splices two statements and hides the logic between them. Name the relation ("because", "but", "for example") or write two sentences. A spaced or double hyphen between statements is the same dash. A range (`510`), a list marker, and a flag (`--force`) are not.
 
-### Section 9 — Writing practices (Rules 9.1-9.4, GR-1 to GR-8)
+### Section 9  Writing practices (Rules 9.1-9.4, GR-1 to GR-8)
 
 | Rule | Instruction |
 |---|---|
@@ -126,7 +126,7 @@ Rule 8.6 matters for software text: `sqlpipe run --config sqlpipe.yaml` in backt
 | 9.3 | Prefer the one-word verb over the phrasal verb ("decrease", not "go down"; "install", not "set up"). Strict mode: the phrasal verb is a violation. |
 | 9.4 | Keep one consistent style and terminology through the whole document. |
 
-General recommendations: keep "that" (GR-1), primary verb first and the tool after "with" (GR-2: "Fetch the URL with curl"), clear pronoun referents (GR-3), "this + noun" (GR-4), inclusive language (GR-7). GR-6: "e.g." → "for example", "i.e." → "that is", delete "etc." and name the items.
+General recommendations: keep "that" (GR-1), primary verb first and the tool after "with" (GR-2: "Fetch the URL with curl"), clear pronoun referents (GR-3), "this + noun" (GR-4), inclusive language (GR-7). GR-6: "e.g."  "for example", "i.e."  "that is", delete "etc." and name the items.
 
 ### The modal ladder
 
@@ -161,5 +161,5 @@ One word, one meaning, one part of speech, for the whole document (Rules 1.11, 9
 
 - The settings file is `configuration`, never config, settings, or options in the same document.
 - The verify concept is `make sure that`, never check, verify, confirm, validate, or ensure as verbs. Strict mode routes the rest with `references/strict-vocabulary.md`.
-- Common swaps: however → but, therefore → as a result, since (= because) → because, perform → do, avoid → prevent, repeat → do again, acceptable → permitted, now → delete it.
+- Common swaps: however  but, therefore  as a result, since (= because)  because, perform  do, avoid  prevent, repeat  do again, acceptable  permitted, now  delete it.
 

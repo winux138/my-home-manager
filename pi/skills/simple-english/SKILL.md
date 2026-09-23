@@ -31,7 +31,7 @@ When asked to write or rewrite documentation, apply these rules to the prose:
 1. **Classify each passage.** Procedural text tells the reader what to do: imperative mood, 20 words per sentence, one instruction per sentence. Descriptive text explains: simple tenses, 25 words per sentence, one topic per paragraph, six sentences per paragraph at most.
 2. **Never touch** code, identifiers, commands, flags, file paths, quoted errors, product names, or facts. When the source gives no number or cause, keep the general statement.
 3. **Condition before command, with a comma.** "If the build fails, read the log."
-4. **Simple tenses, active voice.** No present perfect ("has completed" → "completed"). No "-ing" verb after a comma (", making it easy" → new sentence). Name the actor: "You run the migration."
+4. **Simple tenses, active voice.** No present perfect ("has completed"  "completed"). No "-ing" verb after a comma (", making it easy"  new sentence). Name the actor: "You run the migration."
 5. **Modals: can, will, must.** Never should, would, may, might, could. A required "should" becomes "must". An optional one is deleted.
 6. **Complete grammar.** No contractions, keep articles, keep "that". Short sentences, not telegraph style.
 7. **No semicolons and no em-dashes.** Write two sentences, or name the relation.
@@ -45,7 +45,7 @@ Use American spelling. `references/word-swaps.md` maps the overused words to pla
 
 **Before (real AI output):**
 
-> **Connection timeouts.** If sqlpipe hangs or fails with `dial tcp: i/o timeout`, check that the host running sqlpipe can reach the Postgres port (usually 5432) — this is often a security group or firewall rule blocking the connection. If you're connecting to a managed database (RDS, Cloud SQL, etc.), confirm the instance allows connections from sqlpipe's IP.
+> **Connection timeouts.** If sqlpipe hangs or fails with `dial tcp: i/o timeout`, check that the host running sqlpipe can reach the Postgres port (usually 5432)  this is often a security group or firewall rule blocking the connection. If you're connecting to a managed database (RDS, Cloud SQL, etc.), confirm the instance allows connections from sqlpipe's IP.
 
 **After (procedural, headed, numbered):**
 
@@ -67,13 +67,13 @@ Every chat reply, in every mode, follows these rules. Read them last, apply them
 5. No contractions. No openers ("Certainly", "Great question") and no closers ("I hope this helps", "Let me know").
 6. Do not shorten quoted error text, security warnings, or confirmations before a destructive action.
 
-**Before:** The failure stems from control-plane leader election during pod churn — nothing to worry about!
+**Before:** The failure stems from control-plane leader election during pod churn  nothing to worry about!
 **After:** The pods restarted and the queue lost its leader for a short time. It recovered without help. You do not have to do anything.
 
 ## Self-Check Before You Deliver
 
-1. Reply: search for `—`, `**`, `#`, and a line that starts with `-`. Remove each one.
-2. Document: count the words in your three longest sentences. Over 20 or 25, split. Search for `'`, `has been`, `should`, `may`, `;`, `—`, `, making`, `**`, `check`, `verify`, `config`, and any heading that covers fewer than three sentences. Fix each hit. Read each step: does it name a host, a flag, or a prior step the reader must already have? If not, add it or point to it.
+1. Reply: search for ``, `**`, `#`, and a line that starts with `-`. Remove each one.
+2. Document: count the words in your three longest sentences. Over 20 or 25, split. Search for `'`, `has been`, `should`, `may`, `;`, ``, `, making`, `**`, `check`, `verify`, `config`, and any heading that covers fewer than three sentences. Fix each hit. Read each step: does it name a host, a flag, or a prior step the reader must already have? If not, add it or point to it.
 
 ## Modes
 
@@ -87,7 +87,7 @@ These rules are for facts and instructions, not marketing copy or brand writing:
 
 ## References
 
-- `references/rule-catalog.md` — the 53 rules of Issue 9 with software examples, for CHECK mode
-- `references/strict-vocabulary.md` — the dictionary discipline for Strict mode
-- `references/word-swaps.md` — slop-to-plain word map
-- `references/use-cases.md` — mode and pattern for error messages, runbooks, incident reports, release notes, commits, agent prompts, UI copy, translation prep
+- `references/rule-catalog.md`  the 53 rules of Issue 9 with software examples, for CHECK mode
+- `references/strict-vocabulary.md`  the dictionary discipline for Strict mode
+- `references/word-swaps.md`  slop-to-plain word map
+- `references/use-cases.md`  mode and pattern for error messages, runbooks, incident reports, release notes, commits, agent prompts, UI copy, translation prep

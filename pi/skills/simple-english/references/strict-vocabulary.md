@@ -43,7 +43,7 @@ The standard has already chosen. Use the approved word.
 | remove | Approved verb | Keep it. |
 | run, execute | Both rejected | `operate` for run, `do` for execute. |
 | invoke, launch | Not in the dictionary | Legal as technical verbs (Rule 1.12). |
-| display (verb), render, present (verb) | All rejected | `show` covers most software cases. Official alternatives: display → `show`, render → `make`, present → `give` or `show`. |
+| display (verb), render, present (verb) | All rejected | `show` covers most software cases. Official alternatives: display  `show`, render  `make`, present  `give` or `show`. |
 | issue | Not in the dictionary | Use as a technical noun, or replace with `problem` (approved). |
 | failure | Rejected in general use; approved as a technical noun for performance loss | Use only for a performance error: "a failure of the pump". |
 | error, problem | Approved nouns | Keep them. |
@@ -57,14 +57,14 @@ The dictionary introduction lists the words that writers get wrong most often. T
 | however | but |
 | therefore | thus, as a result |
 | since (= because) | because |
-| any | Delete it, or restructure: "if you have any questions" → "if you have questions" |
-| now | at this time. Better, delete it: "now start the service" → "start the service" |
+| any | Delete it, or restructure: "if you have any questions"  "if you have questions" |
+| now | at this time. Better, delete it: "now start the service"  "start the service" |
 | need to, have to | Imperative in procedures ("install"); "it is necessary to" in descriptive text |
 | perform | do |
 | insert | put (but SQL `INSERT` stays: it is quoted text) |
 | reach | get, get to |
 | avoid | prevent |
-| repeat | do … again |
+| repeat | do  again |
 | acceptable | permitted. Better, give the limit: "a latency of less than 200 ms" |
 | complete (adjective) | completed |
 | the example below, the section above | Name the target, or put the reference after it: "the example that follows" |
