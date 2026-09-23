@@ -29,6 +29,7 @@ in
 
       fd
       ripgrep
+      parallel
       ouch
       tmux
       fastfetch
