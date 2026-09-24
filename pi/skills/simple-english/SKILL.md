@@ -77,7 +77,14 @@ Every chat reply, in every mode, follows these rules. Read them last, apply them
 
 ## Modes
 
-**Plain** is the default and is all of the above. **Strict** applies when the user names STE, ASD-STE100, or compliance: read `references/strict-vocabulary.md` before you draft the document, and say once that no tool guarantees compliance. The reply stays Plain in every mode.
+**Plain** is the default and is all of the above. **Strict** applies when the user names STE, ASD-STE100, or compliance. The reply stays Plain in every mode.
+
+In Strict mode, first look for the official word lists at `$STE_DATA_DIR`, or at `~/.local/share/ste` when that variable is unset:
+
+- `not-approved.tsv` present: this is the real list, 1,297 rejected words with their approved alternatives, extracted from the reader's own copy of Issue 9. Use it. Check every non-domain word against it. `approved.txt` holds the 841 approved words, and `dict.json` holds the parsed entries.
+- `not-approved.tsv` absent: say once that the index is lossy, then read `references/strict-vocabulary.md` and work from that. Point the user at the free request form at asd-ste100.org.
+
+Say once, in either case, that no tool guarantees compliance. Rules 1.5, 1.8 and 1.12 still make domain nouns and domain verbs legal, so a hit on a technical term is a false positive, not a violation.
 
 When asked to CHECK text instead of writing it, first open `references/rule-catalog.md`. Then report each violation as: rule number quoted from that file, the offending text, a compliant rewrite. Never cite a rule number from memory. When the user asked for compliance, end with one sentence: no tool can guarantee ASD-STE100 compliance, and the standard is a free download at asd-ste100.org.
 
@@ -88,6 +95,7 @@ These rules are for facts and instructions, not marketing copy or brand writing:
 ## References
 
 - `references/rule-catalog.md`  the 53 rules of Issue 9 with software examples, for CHECK mode
-- `references/strict-vocabulary.md`  the dictionary discipline for Strict mode
+- `references/strict-vocabulary.md`  the dictionary discipline for Strict mode, and the fallback when the official lists are absent
+- `$STE_DATA_DIR`  the official word lists, made by the reader from their own copy of Issue 9. Never in git: ASD forbids reproduction in whole or in part. The extractor lives in `AminBlg/SimpleEnglish` under `tools/ste-dictionary`.
 - `references/word-swaps.md`  slop-to-plain word map
 - `references/use-cases.md`  mode and pattern for error messages, runbooks, incident reports, release notes, commits, agent prompts, UI copy, translation prep

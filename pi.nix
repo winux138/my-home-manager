@@ -8,6 +8,10 @@
 let
   piAgentDir = ".pi/agent";
   piAgentPath = "${config.home.homeDirectory}/${piAgentDir}";
+  # ASD-STE100 word lists, made by the user from their own copy of the standard.
+  # ASD forbids reproduction in whole or in part, so the data never enters git or
+  # the store. Home Manager only creates the directory and publishes the path.
+  steDataPath = "${config.home.homeDirectory}/.local/share/ste";
   piSettingsPath = "${piAgentPath}/settings.json";
   # Delete this list together with its cleanup command after every host has migrated.
   legacyPiFiles = map (path: "${piAgentPath}/${path}") [
@@ -40,6 +44,7 @@ in
     PI_CODING_AGENT_DIR = piAgentPath;
     PI_SKIP_VERSION_CHECK = "1";
     PI_TELEMETRY = "0";
+    STE_DATA_DIR = steDataPath;
   };
 
   home.file = {
@@ -68,6 +73,8 @@ in
         run install -d -m700 ${lib.escapeShellArg piAgentPath}
         # Remove exact pre-Home-Manager resources; retire with legacyPiFiles above.
         run rm -f ${lib.escapeShellArgs legacyPiFiles}
+        # Holds a copyrighted standard; keep it private and out of every repository.
+        run install -d -m700 ${lib.escapeShellArg steDataPath}
       '';
 
   home.activation.writePiSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
