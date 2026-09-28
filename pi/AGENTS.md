@@ -11,6 +11,19 @@ security warnings, irreversible confirmations, or when simple English creates am
 For every coding task, read and apply `skills/ponytail/SKILL.md` relative to this file before
 planning or editing.
 
+## Preserve knowledge in types
+
+Parse loose input into values whose types encode the required rules.
+Return the value or a meaningful error.
+Make consuming code require that value instead of trusting an earlier true-or-false check.
+
+Use enums (types with named alternatives) to represent choices.
+Choose collections that encode the required rules.
+Use opaque types (types with hidden internals) to prevent callers from bypassing those rules.
+Create them only through checked constructors (functions that enforce the rules before creating values).
+
+Convert input near its entry point, or in the branch where a stronger requirement first applies.
+
 ## User Preferences
 
 Read before every task:
