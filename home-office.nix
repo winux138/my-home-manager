@@ -8,6 +8,8 @@
 }:
 let
   wrap = config.lib.nixGL.wrap;
+  hyprlandPortal = wrap pkgs.xdg-desktop-portal-hyprland;
+  portalPackages = [ pkgs.xdg-desktop-portal ] ++ config.xdg.portal.extraPortals;
 in
 {
   imports = [
@@ -59,6 +61,39 @@ in
       tridactyl
     ];
   };
+
+  programs.obs-studio = {
+    enable = true;
+    package = wrap pkgs.obs-studio;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      hyprlandPortal
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common.default = [ "gtk" ];
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
+    };
+  };
+
+  # Before portal activation, the nested Hyprland launcher must import
+  # WAYLAND_DISPLAY, HYPRLAND_INSTANCE_SIGNATURE and XDG_CURRENT_DESKTOP via
+  # dbus-update-activation-environment --systemd.
+  dbus.packages = portalPackages;
+  systemd.user.packages = portalPackages;
+
+  # The daemon's default picker path bypasses nixGL. Use the wrapped picker.
+  xdg.configFile."hypr/xdph.conf".text = ''
+    screencopy {
+      custom_picker_binary = ${hyprlandPortal}/bin/hyprland-share-picker
+    }
+  '';
 
   home = {
     packages = (with pkgs; [
