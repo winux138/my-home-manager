@@ -64,7 +64,13 @@ in
 
   programs.obs-studio = {
     enable = true;
-    package = wrap pkgs.obs-studio;
+    # Load the current Intel QSV runtime instead of Ubuntu's legacy Media SDK.
+    package = (wrap pkgs.obs-studio).overrideAttrs (old: {
+      buildCommand = old.buildCommand + ''
+        wrapProgram "$out/bin/obs" \
+          --prefix ONEVPL_SEARCH_PATH : "${pkgs.vpl-gpu-rt}/lib"
+      '';
+    });
   };
 
   xdg.portal = {
