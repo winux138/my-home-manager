@@ -27,6 +27,8 @@ in
       arandr
       direnv
 
+      herdr
+
       fd
       ripgrep
       parallel
