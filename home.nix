@@ -5,6 +5,7 @@ in
   imports = [
     ./cli-common.nix
     ./helix.nix
+    ./herdr.nix
     ./git.nix
     ./kitty.nix
     ./tmux.nix
@@ -26,8 +27,6 @@ in
       xclip
       arandr
       direnv
-
-      unstable.herdr
 
       fd
       ripgrep

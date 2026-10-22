@@ -5,6 +5,7 @@
     ./fish.nix
     ./git.nix
     ./helix.nix
+    ./herdr.nix
     ./neovim.nix
     ./pi.nix
     ./tmux.nix

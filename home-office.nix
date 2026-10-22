@@ -18,6 +18,7 @@ in
     ./fish.nix
     ./git.nix
     ./helix.nix
+    ./herdr.nix
     ./kitty.nix
     ./tmux.nix
     ./polybar.nix
@@ -122,8 +123,6 @@ in
       arandr
       direnv
       zathura
-
-      unstable.herdr
 
       fd
       ripgrep
