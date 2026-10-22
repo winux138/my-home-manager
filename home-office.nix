@@ -3,6 +3,7 @@
   # lib,
   config,
   pkgs,
+  unstable,
   nixgl,
   ...
 }:
@@ -121,6 +122,8 @@ in
       arandr
       direnv
       zathura
+
+      unstable.herdr
 
       fd
       ripgrep

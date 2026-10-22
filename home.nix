@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, unstable, ... }:
 let
 in
 {
@@ -27,7 +27,7 @@ in
       arandr
       direnv
 
-      herdr
+      unstable.herdr
 
       fd
       ripgrep

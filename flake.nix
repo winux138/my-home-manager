@@ -79,7 +79,7 @@
 
       homeConfigurations = {
         ubuntu-home = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = { inherit inputs unstable; };
           inherit pkgs;
           modules = [
             inputs.nvf.homeManagerModules.default
