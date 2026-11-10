@@ -33,6 +33,11 @@ let
     defaultThinkingLevel = "max";
     enableInstallTelemetry = false;
     hideThinkingBlock = false;
+    # Keep alternative styles on disk. Remove these exclusions to re-enable discovery.
+    skills = [
+      "-skills/simple-english/SKILL.md"
+      "-skills/kem-reply/SKILL.md"
+    ];
     theme = "dark";
   };
 in

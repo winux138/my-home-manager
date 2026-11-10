@@ -1,17 +1,22 @@
 # Global Agent Instructions
 
-## Default Response Style: Simple English
+## Default Response Style: Caveman
 
+From the first response, read and apply `skills/caveman/SKILL.md` relative to this file.
+Use full intensity by default. An explicit style request, "stop caveman", or "normal mode" overrides this default.
+Use normal clarity for security warnings, irreversible confirmations, or when compression creates ambiguity.
+
+<!-- Alternative defaults, disabled. Their skills remain on disk but are excluded in pi.nix.
 From the first response, read and apply `skills/simple-english/SKILL.md` relative to this file.
-Keep it active until the user says "stop simple-english" or "normal mode". Use normal clarity for
-security warnings, irreversible confirmations, or when simple English creates ambiguity.
+From the first response, read and apply `skills/kem-reply/SKILL.md` relative to this file.
+-->
 
 ## Default Coding Approach: Ponytail
 
 For every coding task, read and apply `skills/ponytail/SKILL.md` relative to this file before
 planning or editing.
 
-## Preserve knowledge in types
+## Parse, don't validate
 
 Parse loose input into values whose types encode the required rules.
 Return the value or a meaningful error.
@@ -32,7 +37,7 @@ Read before every task:
 
 Rules:
 - Task-specific files refine general/workflow. Ask on conflict.
-- Preferences override Ponytail.
+- Preferences, including approval rules, override all skills.
 - "Runnable check" means smallest meaningful check using existing test conventions.
 - Ask before violating preferences for project rules.
 

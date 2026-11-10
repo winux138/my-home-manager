@@ -34,6 +34,25 @@
 - Never move changesets, retitle related PRs, or alter PR relationships unless the user explicitly requests that exact operation.
 - In flake repositories, report that untracked source files must be staged before build or switch.
 
+## Git worktrees
+
+- For branch-specific implementation, use a dedicated Git worktree unless the user explicitly requests the existing checkout.
+- Reuse a matching worktree and leave the user's other checkouts untouched.
+- Include branch and worktree creation in the proposed mutation batch. This default does not grant creation approval.
+
+## Delegated agents
+
+- When delegation is authorised, put all delegated agents in a clearly named, dedicated Herdr workspace for that task.
+- Before controlling Herdr, require `HERDR_ENV=1` and read `herdr --skill` for the installed commands.
+- Preserve the user's focus with `--no-focus` and target explicit workspace, tab, pane, or agent identifiers.
+- Do not close workspaces or panes that you did not create without explicit approval.
+- If Herdr is unavailable or the agent runs outside it, ask before using another delegation method.
+
+## Private work guidance
+
+- Keep employer-specific instructions, skills, credentials, and policies out of shared Home Manager sources.
+- Use approved private files or machine-local links, and verify skill discovery from an actual work repository.
+
 ## Backlog and planning
 
 - For a new project, create a backlog/planning folder with markdown entries as scope and decisions evolve.
@@ -49,6 +68,9 @@
 
 ## Dependencies
 
+- Never install, add, upgrade, or download tools, dependencies, extensions, or packages unless explicitly requested or named and approved beforehand.
+- A request to create a flake authorises dependency setup for that flake only, not global installs or unrelated tools.
+- Prefer existing installed tools and approved Nix environments.
 - Bring dependencies only when the current approved slice needs them.
 - For each new dependency, be able to justify why it is needed now.
 - Avoid overengineering and do not add dependencies for convenience only.
