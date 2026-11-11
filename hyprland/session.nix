@@ -93,7 +93,7 @@ let
       wait -n "$outer_pid" "$inner_pid" "$sync_pid"
     '';
   };
-  waylandSession = pkgs.writeTextDir "share/wayland-sessions/hyprland.desktop" ''
+  waylandSession = pkgs.writeTextDir "share/wayland-sessions/hyprland-split.desktop" ''
     [Desktop Entry]
     Name=Hyprland (Split)
     Comment=Nested Hyprland session with 3-way ultrawide split

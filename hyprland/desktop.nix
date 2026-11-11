@@ -34,7 +34,7 @@ let
         exit 2
       }
 
-      mkdir -p -m 700 -- "$state"
+      install -d -m 700 -- "$state"
       shader="$state/blue-light-$kelvin.frag"
       [[ $shader != *"'"* ]] || { echo "runtime path contains an unsupported quote" >&2; exit 1; }
       result=$(hyprctl -i "$instance" eval "dofile('${blueLightLua}').apply($kelvin, '$shader')")

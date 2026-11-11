@@ -3,7 +3,7 @@
 ## LightDM Wayland session
 
 ```sh
-sudo ln -sf ~/.nix-profile/share/wayland-sessions/hyprland.desktop /usr/share/wayland-sessions/hyprland.desktop
+sudo ln -sf ~/.nix-profile/share/wayland-sessions/hyprland-split.desktop /usr/share/wayland-sessions/hyprland-split.desktop
 ```
 
 ## Useful ressources

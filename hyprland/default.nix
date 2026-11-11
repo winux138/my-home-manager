@@ -14,7 +14,7 @@ let
   moniquePackage = inputs.monique.packages.${system}.default;
 
   hyprsplitLua = pkgs.runCommand "hyprsplit-lua" { } ''
-    install -Dm444 ${pkgs.hyprlandPlugins.hyprsplit.src}/init.lua \
+    install -Dm444 ${unstable.hyprlandPlugins.hyprsplit.src}/init.lua \
       "$out/share/hyprsplit/init.lua"
   '';
 
