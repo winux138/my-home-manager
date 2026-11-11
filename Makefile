@@ -2,6 +2,10 @@
 update:
 	home-manager switch --flake .#ubuntu-home
 
+.PHONY: office
+office:
+	home-manager switch --flake .#ubuntu-office
+
 # Headless container: home-manager is not installed there, so run it from the flake.
 .PHONY: ona
 ona:

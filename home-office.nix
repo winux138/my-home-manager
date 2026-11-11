@@ -19,6 +19,7 @@ in
     ./git.nix
     ./helix.nix
     ./herdr.nix
+    ./hyprland
     ./kitty.nix
     ./tmux.nix
     ./pi.nix
@@ -91,9 +92,6 @@ in
     };
   };
 
-  # Before portal activation, the nested Hyprland launcher must import
-  # WAYLAND_DISPLAY, HYPRLAND_INSTANCE_SIGNATURE and XDG_CURRENT_DESKTOP via
-  # dbus-update-activation-environment --systemd.
   dbus.packages = portalPackages;
   systemd.user.packages = portalPackages;
 
