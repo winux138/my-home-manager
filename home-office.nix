@@ -21,7 +21,6 @@ in
     ./herdr.nix
     ./kitty.nix
     ./tmux.nix
-    ./polybar.nix
     ./pi.nix
   ];
 
@@ -31,7 +30,7 @@ in
   targets.genericLinux.nixGL = {
     packages = nixgl.packages;
     defaultWrapper = "mesa";
-    installScripts = [ "mesa" ]; # provides `nixGLMesa` command for manual use (e.g. picom)
+    installScripts = [ "mesa" ];
   };
 
   programs.bash.enable = true;
@@ -50,6 +49,8 @@ in
         term = "xterm-256color";
         font = "Iosevka Nerd Font:size=11";
       };
+      colors-dark.alpha = 0.9;
+      colors-light.alpha = 0.9;
     };
   };
 
@@ -113,14 +114,10 @@ in
       pandoc
       (wrap krita)
       keepassxc
-      (wrap quickshell)
-      polybar
       brightnessctl
-      flameshot
+      wl-clipboard
       dust
 
-      xclip
-      arandr
       direnv
       zathura
 

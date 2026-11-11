@@ -1,9 +1,26 @@
 {
   description = "My home manager config";
 
+  nixConfig = {
+    extra-substituters = [ "https://hyprland.cachix.org" ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    hyprland.url = "github:hyprwm/Hyprland/5a78b5e927345860a27e2893bf894f97ee620c48";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins/428bfcd1c9ee34965400bb359349f518140c9920";
+      inputs.hyprland.follows = "hyprland";
+    };
+    monique = {
+      url = "git+https://github.com/ToRvaLDz/monique?rev=d656eea5cbd4d79577442c818f66fce8876714c7";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
