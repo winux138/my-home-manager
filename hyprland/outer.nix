@@ -70,6 +70,7 @@ in
   local runtime = dofile(${toLua "${outerRuntime}"})
 
   runtime.watch_layout()
+  hl.on("config.reloaded", runtime.load_monitors)
   hl.monitor(${toLua monitor})
   runtime.load_monitors()
   hl.config(${toLua settings})
