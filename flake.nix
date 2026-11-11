@@ -66,6 +66,16 @@
           inherit pkgs;
           modules = [ { config.vim = (import ./neovim.nix { inherit pkgs; }).programs.nvf.settings.vim; } ];
         }).neovim;
+
+      officeHome = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = { inherit inputs home-manager unstable nixgl piPackage; };
+        inherit pkgs;
+        modules = [
+          inputs.nvf.homeManagerModules.default
+          ./home-office.nix
+        ];
+      };
+      hyprlandTest = officeHome.config.my.hyprlandTest;
     in
     {
       # Binaries exposed by this flake. Run any of them with:
@@ -94,6 +104,30 @@
         };
       };
 
+      devShells.${system}.hyprland-test = pkgs.mkShellNoCC {
+        packages = [
+          hyprlandTest.blueLight
+          hyprlandTest.gatherWindows
+          hyprlandTest.hyprlandWrapped
+          hyprlandTest.outputId
+          hyprlandTest.syncOutputs
+          hyprlandTest.xwaylandLauncher
+          pkgs.foot
+          pkgs.grim
+          pkgs.jq
+          pkgs.python3
+          pkgs.socat
+          pkgs.wev
+          pkgs.wlrctl
+          pkgs.wtype
+          pkgs.xmessage
+        ];
+        env = {
+          INNER_HYPRLAND_CONFIG = hyprlandTest.innerConfig;
+          OUTER_HYPRLAND_CONFIG = hyprlandTest.outerConfig;
+        };
+      };
+
       homeConfigurations = {
         ubuntu-home = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs unstable; };
@@ -103,14 +137,7 @@
             ./home.nix
           ];
         };
-        ubuntu-office = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs home-manager unstable nixgl piPackage; };
-          inherit pkgs;
-          modules = [
-            inputs.nvf.homeManagerModules.default
-            ./home-office.nix
-          ];
-        };
+        ubuntu-office = officeHome;
         # Headless container / devcontainer: terminal tooling only, runs as root.
         ona = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs unstable piPackage; };

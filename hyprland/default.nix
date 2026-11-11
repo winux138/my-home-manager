@@ -81,33 +81,48 @@ let
   };
 in
 {
-  xdg.configFile."caelestia/shell.json".text = builtins.toJSON desktop.caelestiaSettings;
+  config = {
+    xdg.configFile."caelestia/shell.json".text = builtins.toJSON desktop.caelestiaSettings;
 
-  home.packages = [
-    unstable.caelestia-cli
-    desktop.blueLight
-    desktop.caelestiaLauncher
-    desktop.caelestiaPackage
-    desktop.companyChrome
-    desktop.defaultChrome
-    desktop.desktopEntries
-    desktop.detectMonitor
-    desktop.monitorEditor
-    desktop.safeEyes
-    desktop.screenshot
-    lock.checkAuth
-    lock.lock
-    lock.setPassword
-    pkgs.grim
-    pkgs.slurp
-    pkgs.socat
-    pkgs.wayland-utils
-    session.hyprlandWrapped
-    session.session
-    session.waylandSession
-    session.xwaylandLauncher
-    sync.gatherWindows
-    sync.outputId
-    sync.syncOutputs
-  ];
+    home.packages = [
+      unstable.caelestia-cli
+      desktop.blueLight
+      desktop.caelestiaLauncher
+      desktop.caelestiaPackage
+      desktop.companyChrome
+      desktop.defaultChrome
+      desktop.desktopEntries
+      desktop.detectMonitor
+      desktop.monitorEditor
+      desktop.safeEyes
+      desktop.screenshot
+      lock.checkAuth
+      lock.lock
+      lock.setPassword
+      pkgs.grim
+      pkgs.slurp
+      pkgs.socat
+      pkgs.wayland-utils
+      session.hyprlandWrapped
+      session.session
+      session.waylandSession
+      session.xwaylandLauncher
+      sync.gatherWindows
+      sync.outputId
+      sync.syncOutputs
+    ];
+  };
+
+  options.my.hyprlandTest = pkgs.lib.mkOption {
+    type = pkgs.lib.types.attrsOf pkgs.lib.types.anything;
+    internal = true;
+    readOnly = true;
+    default = {
+      inherit (session) hyprlandWrapped xwaylandLauncher;
+      inherit (sync) gatherWindows outputId syncOutputs;
+      inherit (desktop) blueLight;
+      innerConfig = "${configBundle}/inner.lua";
+      outerConfig = "${configBundle}/outer.lua";
+    };
+  };
 }
