@@ -62,11 +62,13 @@ in
   programs.lazygit = {
     enable = true;
     settings = {
-      git.pagers = [
+      git.diffRenderers = [
         {
-          pager = "${delta} --paging=never --hyperlinks --hyperlinks-file-link-format=lazygit-edit://{path}:{line}";
+          command = "${delta} --paging=never --hyperlinks --hyperlinks-file-link-format=lazygit-edit://{path}:{line}";
         }
-        { } # built-in lazygit diff, available via `|`
+        {
+          type = "rawGit"; # built-in lazygit diff, available via `|`
+        }
       ];
     };
   };
