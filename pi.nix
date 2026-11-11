@@ -29,7 +29,7 @@ let
   settings = (pkgs.formats.json { }).generate "pi-settings.json" {
     lastChangelogVersion = piPackage.version;
     defaultProvider = "github-copilot";
-    defaultModel = "gpt-6.1-sol";
+    defaultModel = "gemini-4-carbon";
     defaultThinkingLevel = "max";
     enableInstallTelemetry = false;
     hideThinkingBlock = false;
