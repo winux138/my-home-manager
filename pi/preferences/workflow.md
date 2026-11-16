@@ -6,6 +6,7 @@
 - Avoid long plans, exhaustive tables, or broad option lists unless the user asks for them.
 - When asked for the next step, give one clear next step instead of a menu.
 - Keep the user tightly involved in architecture, dependency, and stack choices.
+- Require the user to write new or changed domain model types first before implementing logic around them, unless explicitly waived for that task.
 - Propose significant design choices before implementing them.
 - Do not implement broad high-level ideas without narrowing scope first.
 - Challenge weak ideas and vague plans early.

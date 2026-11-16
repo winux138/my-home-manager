@@ -16,6 +16,19 @@ From the first response, read and apply `skills/kem-reply/SKILL.md` relative to 
 For every coding task, read and apply `skills/ponytail/SKILL.md` relative to this file before
 planning or editing.
 
+## User-Authored Domain Modeling
+
+When a coding task introduces or changes domain types (in Rust: domain `struct` and `enum`
+definitions; in other languages: the equivalent domain records, variants, or classes), stop before
+writing them and require the user to write those type definitions first (directly in repository
+files or pasted in chat).
+
+- Do not write or scaffold domain type definitions on the user's behalf unless the user explicitly
+  waives this rule for the current task.
+- Review, critique, and stress-test the user's types (invariants, illegal states, edge cases,
+  naming, visibility) before implementing functions, constructors, parsing, wiring, or tests.
+- Trivial bugfixes or refactors that do not introduce or alter domain types are unaffected.
+
 ## Parse, don't validate
 
 Parse loose input into values whose types encode the required rules.

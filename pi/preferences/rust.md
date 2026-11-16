@@ -25,6 +25,7 @@
 
 ## Types and API design
 
+- When introducing or changing domain types (`struct` and `enum` definitions), stop and have the user write them first; critique invariants and illegal states before implementing methods, parsing, or call sites, unless the user explicitly waives this for the task.
 - Prefer modeling domain concepts with explicit types.
 - Avoid raw `String`, `usize`, etc. when the value has domain meaning.
 - Raw strings are acceptable at external boundaries, URLs/text bodies, and display text.
