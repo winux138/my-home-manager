@@ -68,26 +68,7 @@
           unstable.rodeo
         else
           unstable.callPackage ./rodeo.nix { };
-      ona = pkgs.stdenvNoCC.mkDerivation (final: {
-        pname = "ona";
-        version = "20261112.11538.0";
-        # Version and linux-amd64 digest: https://app.gitpod.io/releases/cli/stable/manifest.json
-        src = pkgs.fetchurl {
-          url = "https://releases.gitpod.io/cli/releases/${final.version}/gitpod-linux-amd64";
-          hash = "sha256-7uJHt/Rvi/LmDEuVpmKEa3nGfh9huBtBYblf1/iqg0E=";
-        };
-        dontUnpack = true;
-        nativeBuildInputs = [ pkgs.makeWrapper ];
-        installPhase = ''
-          runHook preInstall
-          install -Dm755 "$src" "$out/bin/ona"
-          # Prefer the host ssh: it can resolve the workstation's directory-service UID.
-          wrapProgram "$out/bin/ona" --suffix PATH : ${pkgs.openssh}/bin
-          runHook postInstall
-        '';
-        meta.mainProgram = "ona";
-        meta.platforms = [ "x86_64-linux" ];
-      });
+      ona = pkgs.callPackage ./ona.nix { };
       onaNew = pkgs.writeShellApplication {
         name = "ona-new";
         runtimeInputs = [ ona unstable.herdr-core pkgs.jq pkgs.coreutils ];
