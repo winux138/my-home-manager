@@ -59,6 +59,35 @@
       unstable = import nixpkgs-unstable { inherit system; };
 
       piPackage = unstable.pi-coding-agent;
+      ona = pkgs.stdenvNoCC.mkDerivation (final: {
+        pname = "ona";
+        version = "20261112.11538.0";
+        # Version and linux-amd64 digest: https://app.gitpod.io/releases/cli/stable/manifest.json
+        src = pkgs.fetchurl {
+          url = "https://releases.gitpod.io/cli/releases/${final.version}/gitpod-linux-amd64";
+          hash = "sha256-7uJHt/Rvi/LmDEuVpmKEa3nGfh9huBtBYblf1/iqg0E=";
+        };
+        dontUnpack = true;
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        installPhase = ''
+          runHook preInstall
+          install -Dm755 "$src" "$out/bin/ona"
+          # Prefer the host ssh: it can resolve the workstation's directory-service UID.
+          wrapProgram "$out/bin/ona" --suffix PATH : ${pkgs.openssh}/bin
+          runHook postInstall
+        '';
+        meta.mainProgram = "ona";
+        meta.platforms = [ "x86_64-linux" ];
+      });
+      onaNew = pkgs.writeShellApplication {
+        name = "ona-new";
+        runtimeInputs = [ ona unstable.herdr-core pkgs.jq pkgs.coreutils ];
+        # Keep the private project URL and provisioning logic out of this flake.
+        text = ''
+          export PATH="$PATH:${pkgs.openssh}/bin"
+          exec ${pkgs.bash}/bin/bash "$HOME/Work/Rust/ona/scripts/ona-new" "$@"
+        '';
+      };
 
       # Standalone neovim, reusing the exact settings from neovim.nix.
       neovim =
@@ -68,10 +97,11 @@
         }).neovim;
 
       officeHome = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs home-manager unstable nixgl piPackage; };
+        extraSpecialArgs = { inherit inputs home-manager unstable nixgl piPackage onaNew; };
         inherit pkgs;
         modules = [
           inputs.nvf.homeManagerModules.default
+          { home.packages = [ ona onaNew unstable.herdr-core ]; }
           ./home-office.nix
         ];
       };
@@ -82,6 +112,7 @@
       #   nix run github:<owner>/<repo>#<name>
       # Add more by dropping another entry in packages/apps below.
       packages.${system} = {
+        inherit ona;
         neovim = neovim;
         # For hosts without ubuntu-office Home Manager: `nix profile install .#pi`.
         # ubuntu-office already installs this same package.

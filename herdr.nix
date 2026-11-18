@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  specialArgs,
   unstable,
   ...
 }:
@@ -12,7 +13,7 @@ in
 
   xdg.configFile."herdr/config.toml" = {
     force = true;
-    source = tomlFormat.generate "herdr-config.toml" {
+    source = tomlFormat.generate "herdr-config.toml" ({
       onboarding = false;
 
       theme = {
@@ -38,7 +39,16 @@ in
       experimental = {
         pane_history = true;
       };
-    };
+    } // lib.optionalAttrs (specialArgs ? onaNew) {
+      keys.command = [
+        {
+          key = "prefix+alt+n";
+          type = "popup";
+          description = "New Ona VM (Herdr Core)";
+          command = "${lib.getExe specialArgs.onaNew}; printf '\\nPress Enter to close.'; read -r answer";
+        }
+      ];
+    });
   };
 
   home.activation.installHerdrPiIntegration =
