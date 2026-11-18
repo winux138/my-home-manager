@@ -59,6 +59,15 @@
       unstable = import nixpkgs-unstable { inherit system; };
 
       piPackage = unstable.pi-coding-agent;
+      # An unrelated file manager is also named rodeo. Prefer only the Herdr client.
+      rodeo =
+        if builtins.elem (unstable.rodeo.meta.homepage or null) [
+          "https://github.com/lukeed/rodeo"
+          "https://rodeo.lukeed.com"
+        ] then
+          unstable.rodeo
+        else
+          unstable.callPackage ./rodeo.nix { };
       ona = pkgs.stdenvNoCC.mkDerivation (final: {
         pname = "ona";
         version = "20261112.11538.0";
@@ -101,7 +110,7 @@
         inherit pkgs;
         modules = [
           inputs.nvf.homeManagerModules.default
-          { home.packages = [ ona onaNew unstable.herdr-core ]; }
+          { home.packages = [ ona onaNew unstable.herdr-core rodeo ]; }
           ./home-office.nix
         ];
       };
@@ -112,7 +121,7 @@
       #   nix run github:<owner>/<repo>#<name>
       # Add more by dropping another entry in packages/apps below.
       packages.${system} = {
-        inherit ona;
+        inherit ona rodeo;
         neovim = neovim;
         # For hosts without ubuntu-office Home Manager: `nix profile install .#pi`.
         # ubuntu-office already installs this same package.
